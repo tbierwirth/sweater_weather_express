@@ -8,7 +8,6 @@ describe('api', () => {
   });
   beforeEach(() => {
       shell.exec('npx sequelize db:migrate')
-      shell.exec('npx sequelize db:seed:all')
     });
   afterEach(() => {
     shell.exec('npx sequelize db:migrate:undo:all')
@@ -17,7 +16,7 @@ describe('api', () => {
   describe('Test POST /api/v1/users path', () => {
   test('should return a 200 status', () => {
     return request(app).post("/api/v1/users").then(response => {
-      expect(response.status).toBe(200)
+      expect(response.status).toBe(201)
     });
   });
   test('should return an api_key on creation', () => {
