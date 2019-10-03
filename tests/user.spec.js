@@ -8,7 +8,7 @@ describe('api', () => {
     shell.exec('npx sequelize db:create')
   });
   beforeEach(() => {
-      shell.exec('npx sequelize db:migrate')
+      shell.exec('npx sequelize db:migrate --env test')
     });
   afterEach(() => {
     shell.exec('npx sequelize db:migrate:undo:all')
