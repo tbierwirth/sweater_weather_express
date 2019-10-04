@@ -23,28 +23,43 @@ describe('api', () => {
         password_digest: hash,
         api_key: "smi123o4ml124"
       })
-      const user = {
-        email: "billgates@gmail.com",
-        password: "password",
-      }
-      return request(app).post("/api/v1/sessions").send(user).then(response => {
-        expect(response.body.api_key).toBe('smi123o4ml124')
-        expect(response.status).toBe(200)
+      .then(user => {
+        const login = {
+          email: "billgates@gmail.com",
+          password: "password",
+        }
+        return request(app).post("/api/v1/sessions").send(login).then(response => {
+          expect(response.status).toBe(200)
+          expect(response.body.api_key).toBe('smi123o4ml124')
         })
       });
+    })
+
     test('should not respond with api_key if password is incorrect', () => {
       users.create({
         email: "billgates@gmail.com",
         password_digest: "windows",
         api_key: "smi123o4ml124"
       })
-      const user = {
-        email: "billgates@gmail.com",
+      .then(user => {
+        const login = {
+          email: "billgates@gmail.com",
+          password: "password",
+        };
+        return request(app).post("/api/v1/sessions").send(login).then(response => {
+          expect(response.status).toBe(401)
+          expect(response.body.error).toBe('Password is incorrect')
+        })
+      })
+    })
+    test ('should not respond with api_key if email doesnt exist', () => {
+      const login = {
+        email: "billy@gmail.com",
         password: "password",
-      }
-      return request(app).post("/api/v1/sessions").send(user).then(response => {
+      };
+      return request(app).post("/api/v1/sessions").send(login).then(response => {
         expect(response.status).toBe(401)
-        expect(response.body.error).toBe('Password is incorrect')
+        expect(response.body.error).toBe('Email is incorrect or does not exist')
       })
     })
   });
