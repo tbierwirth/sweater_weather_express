@@ -1,18 +1,18 @@
-var shell = require('shelljs');
+var shell = require("shelljs");
 var request = require("supertest");
 var app = require('../app');
-var users = require('../models').User
+const users = require("../models").User
 
 describe('api', () => {
   beforeAll(() => {
+    shell.exec('npx sequelize db:drop')
     shell.exec('npx sequelize db:create')
   });
+
   beforeEach(() => {
-      shell.exec('npx sequelize db:migrate --env test')
+      shell.exec('npx sequelize db:migrate')
+      shell.exec('npx sequelize db:seed:all')
     });
-  afterEach(() => {
-    shell.exec('npx sequelize db:migrate:undo:all')
-  });
 
   describe('Test POST /api/v1/users path', () => {
     test('should return an api_key on creation', () => {
@@ -38,15 +38,10 @@ describe('api', () => {
       })
     })
     test('should not create an account if email is taken', () => {
-      users.create({
-        email: "billgates@gmail.com",
-        password_digest: "password",
-        api_key: "smi123o4ml124"
-      })
       const user = {
-        email: "billgates@gmail.com",
-        password: "windows",
-        password_confirmation: "windows"
+        email: "test@gmail.com",
+        password: "password",
+        password_confirmation: "password"
       }
       return request(app).post("/api/v1/users").send(user).then(response => {
         expect(response.status).toBe(400)
