@@ -10,7 +10,6 @@ describe('Google Geocoding Service', () => {
     return geocoding.getCoordinates()
     .then(response => {
       let results = response.results[0]
-      console.log(results)
       expect(results.formatted_address).toEqual("Denver, CO, USA");
       expect(results.geometry.location.lat).toEqual(39.7392358);
       expect(results.geometry.location.lng).toEqual(-104.990251);
