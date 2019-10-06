@@ -9,7 +9,7 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [{
         email: 'test@gmail.com',
         password_digest: password,
-        api_key: uuidAPIKey.create().apiKey,
+        api_key: 'KH5YFF2-7MF4N5P-G2DTVFM-JHRH89B',
         createdAt: new Date(),
         updatedAt: new Date()
       }], {});
