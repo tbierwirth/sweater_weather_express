@@ -173,3 +173,6 @@ Example Response:
 - Sequelize (5.19.1)
 - Postgres (7.12.1)
 - Jest (24.9.0)
+
+## How To Contribute
+If you would like to contribute, take a look at current open issues and make a pull request with your contribution.
