@@ -20,9 +20,9 @@ DARKSKY_API_KEY=
 
 ## Endpoints
 ### POST `/api/v1/users`
-With parameters in the body, create a user.  Responds with a unique API key.
+Create an account and receive an API key
 
-| Body  | Description                                |
+| Body Params | Description                                |
 |------------|--------------------------------------------|
 | email       | Must be unique        |
 | password | Must match password_confirmation        |
@@ -52,8 +52,7 @@ body:
 ```
 
 ### POST `/api/v1/sessions`
-With parameters in the body, login to receive your API key.
-
+Login to retrieve your API key
 Example Request: 
 ```
 POST /api/v1/sessions
@@ -77,11 +76,15 @@ body:
 ```
 
 ### GET `/api/v1/forecast`
-With API key in the body, retrieve a forecast for a location.
+Retrieve forecast for a location (Ex. Denver, CO)
 
-| Parameter  | Description                                |
+| Query Params  | Description                                |
 |------------|--------------------------------------------|
 | location       | City/State        |
+
+| Body Params  | Description                                |
+|------------|--------------------------------------------|
+| api_key       | Your unique API key        |
 
 Example Request:
 ```
@@ -164,6 +167,33 @@ Example Response:
   }
 }
 ```
+### POST `api/v1/favorites`
+Add favorite location to your account
+
+Example Request:
+```
+POST /api/v1/favorites
+Content-Type: application/json
+Accept: application/json
+
+body:
+
+{
+  "location": "Denver, CO",
+  "api_key": "jgn983hy48thw9begh98h4539h4"
+}
+```
+
+Example Response:
+```
+status: 200
+body:
+
+{
+  "message": "Denver, CO has been added to your favorites",
+}
+```
+
 ## Schema Design
 ![schema](https://i.imgur.com/4SAknRo.png)
 
