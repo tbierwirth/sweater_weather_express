@@ -2,8 +2,21 @@
 An API built out in Express (Node.js) that integrates with Google's Geocoding API and Darksky API.  Allows users to register with a POST request and receive an API key, which they can use to retrieve the forecast of a location.
 
 ## Setup
+### Initial Setup
 - Run `npm install` to install packages.
 - Run `npx sequelize db:create` and then `npx sequelize db:migrate` to create and migrate the database.
+- Edit username/password fields in `config/config.json` to reflect your Postgres username on your machine.
+- Create a `.env` file in the root project directory to contain your API keys in the following format:
+```
+GOOGLE_API_KEY=
+DARKSKY_API_KEY=
+```
+
+### Server
+- Run `npm start` and connect on http://localhost:3000
+
+### Testing
+- Run `npm test`
 
 ## Endpoints
 ### POST `/api/v1/users`
@@ -153,3 +166,10 @@ Example Response:
 ```
 ## Schema Design
 ![schema](https://i.imgur.com/4SAknRo.png)
+
+## Tech Stack
+- Express
+- Javascript
+- Sequelize (5.19.1)
+- Postgres (7.12.1)
+- Jest (24.9.0)
