@@ -13,11 +13,13 @@ router.get('/', function(req, res, next) {
       return google.getCoordinates()
       .then(response => {
         let results = response.results[0]
+        var location = results.formatted_address
         var coordinates = results.geometry.location.lat + ',' + results.geometry.location.lng
         let darksky = new DarkSkyService(coordinates)
         return darksky.getForecast()
         .then(response => {
           forecast = {
+            location: location,
             currently: response.currently,
             hourly: response.hourly,
             daily: response.daily

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     api_key: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    User.hasMany(models.FavoriteLocation, {as: 'favorites'})
+    User.hasMany(models.FavoriteLocation, {foreignKey: 'userId', as: 'favorites'})
   };
   return User;
 };

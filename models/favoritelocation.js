@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const FavoriteLocation = sequelize.define('FavoriteLocation', {
-    locationId: DataTypes.INTEGER,
+    location: DataTypes.STRING,
     userId: DataTypes.INTEGER
   }, {});
   FavoriteLocation.associate = function(models) {
