@@ -1,6 +1,10 @@
 # Sweater Weather Express
 An API built out in Express (Node.js) that integrates with Google's Geocoding API and Darksky API.  Allows users to register with a POST request and receive an API key, which they can use to retrieve the forecast of a location.
 
+## Setup
+Run `npm install` to install packages.
+Run `npx sequelize db:create` and then `npx sequelize db:migrate` to create and migrate the database.
+
 ## Endpoints
 ### POST `/api/v1/users`
 With parameters in the body, create a user.  Responds with a unique API key.
