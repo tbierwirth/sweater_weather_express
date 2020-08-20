@@ -7,7 +7,7 @@
     "test": "jest --config ./jest.config.js --forceExit --coverage"
   },
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "cross-fetch": "^3.0.4",
     "debug": "~2.6.9",
